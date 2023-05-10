@@ -1,0 +1,309 @@
+[gd_scene load_steps=24 format=3]
+
+[ext_resource type="Texture2D" uid="uid://ki12c8jcyep2" path="res://Assets/UI/TextureBars/Bar.png" id="1_vhjko"]
+[ext_resource type="Texture2D" uid="uid://dyur5eqpajf1t" path="res://Assets/UI/TextureBars/HP.png" id="2_gvxb4"]
+[ext_resource type="FontFile" uid="uid://cs23hn6tmp0oq" path="res://Assets/UI/Fonts/font.ttf" id="3_tmdyj"]
+[ext_resource type="Texture2D" uid="uid://cmynq14k1efcq" path="res://Assets/UI/TextureBars/Fuel.png" id="4_dsdnn"]
+[ext_resource type="Script" path="res://Scripts/Game/HUD/ResetButton.gd" id="4_foqi2"]
+[ext_resource type="Texture2D" uid="uid://dufcga4bsra4" path="res://Assets/UI/CommonArtUI/PauseBtn.png" id="5_k7e13"]
+[ext_resource type="Texture2D" uid="uid://nlsfurqmhtbq" path="res://Assets/UI/TouchArtUI/TouchUI.atlas.png" id="6_lqqwe"]
+[ext_resource type="Texture2D" uid="uid://dsopcscnbi8c8" path="res://Assets/UI/TouchArtUI/TouchUI_Dark.atlas.png" id="7_jsp12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j557q"]
+atlas = ExtResource("6_lqqwe")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo6ky"]
+atlas = ExtResource("7_jsp12")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4041"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ollh8"]
+atlas = ExtResource("6_lqqwe")
+region = Rect2(19, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqfnf"]
+atlas = ExtResource("7_jsp12")
+region = Rect2(19, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qufpd"]
+atlas = ExtResource("6_lqqwe")
+region = Rect2(37, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp2xp"]
+atlas = ExtResource("7_jsp12")
+region = Rect2(37, 1, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju8sc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k66d"]
+atlas = ExtResource("6_lqqwe")
+region = Rect2(1, 19, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa2xl"]
+atlas = ExtResource("7_jsp12")
+region = Rect2(1, 19, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reyyo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wttg8"]
+atlas = ExtResource("6_lqqwe")
+region = Rect2(19, 19, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83ywb"]
+atlas = ExtResource("7_jsp12")
+region = Rect2(19, 19, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvbhe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew1eu"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.980392)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="game_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HitpointsBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -93.0
+offset_right = 350.0
+offset_bottom = -33.0
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+tooltip_text = "Hitpoints"
+step = 0.1
+value = 100.0
+texture_over = ExtResource("1_vhjko")
+texture_progress = ExtResource("2_gvxb4")
+texture_progress_offset = Vector2(4, 4)
+
+[node name="InfoLabelHP" type="Label" parent="HitpointsBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 46.0
+offset_right = 165.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tmdyj")
+theme_override_font_sizes/font_size = 35
+text = "HP"
+horizontal_alignment = 1
+
+[node name="FuelBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+offset_top = -93.0
+offset_right = 86.0001
+offset_bottom = -33.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+tooltip_text = "Fuel Level"
+step = 0.1
+value = 100.0
+texture_over = ExtResource("1_vhjko")
+texture_progress = ExtResource("4_dsdnn")
+texture_progress_offset = Vector2(4, 4)
+
+[node name="InfoLabelFuel" type="Label" parent="FuelBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 46.0
+offset_right = 164.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tmdyj")
+theme_override_font_sizes/font_size = 35
+text = "Fuel"
+horizontal_alignment = 1
+
+[node name="PauseMenuButton" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -76.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 76.0
+grow_horizontal = 0
+tooltip_text = "Pause Menu"
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("5_k7e13")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ControlLeft" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -288.0
+offset_right = 528.0
+grow_vertical = 0
+
+[node name="TouchLeft" type="TouchScreenButton" parent="ControlLeft"]
+modulate = Color(1, 1, 1, 0.941176)
+position = Vector2(72, -128)
+scale = Vector2(5, 5)
+texture_normal = SubResource("AtlasTexture_j557q")
+texture_pressed = SubResource("AtlasTexture_uo6ky")
+shape = SubResource("RectangleShape2D_y4041")
+passby_press = true
+action = "game_go_left"
+visibility_mode = 1
+
+[node name="TouchRight" type="TouchScreenButton" parent="ControlLeft"]
+modulate = Color(1, 1, 1, 0.941176)
+position = Vector2(176, -128)
+scale = Vector2(5, 5)
+texture_normal = SubResource("AtlasTexture_ollh8")
+texture_pressed = SubResource("AtlasTexture_qqfnf")
+shape = SubResource("RectangleShape2D_y4041")
+passby_press = true
+action = "game_go_right"
+visibility_mode = 1
+
+[node name="ControlRight" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -575.0
+offset_top = -256.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchJet" type="TouchScreenButton" parent="ControlRight"]
+modulate = Color(1, 1, 1, 0.941176)
+position = Vector2(311, -160)
+scale = Vector2(5, 5)
+texture_normal = SubResource("AtlasTexture_qufpd")
+texture_pressed = SubResource("AtlasTexture_fp2xp")
+shape = SubResource("RectangleShape2D_ju8sc")
+action = "game_jet"
+visibility_mode = 1
+
+[node name="TouchJump" type="TouchScreenButton" parent="ControlRight"]
+modulate = Color(1, 1, 1, 0.941176)
+position = Vector2(423, -160)
+scale = Vector2(5, 5)
+texture_normal = SubResource("AtlasTexture_7k66d")
+texture_pressed = SubResource("AtlasTexture_oa2xl")
+shape = SubResource("RectangleShape2D_reyyo")
+action = "game_jump"
+visibility_mode = 1
+
+[node name="TouchDash" type="TouchScreenButton" parent="ControlRight"]
+modulate = Color(1, 1, 1, 0.941176)
+position = Vector2(311, -50)
+scale = Vector2(5, 5)
+texture_normal = SubResource("AtlasTexture_wttg8")
+texture_pressed = SubResource("AtlasTexture_83ywb")
+shape = SubResource("RectangleShape2D_vvbhe")
+action = "game_slide"
+visibility_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -260.0
+offset_right = 500.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ew1eu")
+
+[node name="PauseOrDead" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -198.0
+offset_right = 160.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tmdyj")
+theme_override_font_sizes/font_size = 50
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -41.0
+offset_right = 108.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Retry" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_tmdyj")
+theme_override_font_sizes/font_size = 30
+text = "Retry"
+expand_icon = true
+script = ExtResource("4_foqi2")
+
+[node name="Continue" type="Button" parent="Panel/Buttons"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("3_tmdyj")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+expand_icon = true
+
+[connection signal="button_up" from="Panel/Buttons/Retry" to="Panel/Buttons/Retry" method="_on_button_up"]

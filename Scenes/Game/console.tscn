@@ -1,0 +1,208 @@
+[gd_scene load_steps=21 format=3 uid="uid://bbo7lo8h2cpbo"]
+
+[ext_resource type="Script" path="res://Scripts/Game/ConsoleUI/G_DebugConsole.gd" id="1_h1uii"]
+[ext_resource type="FontFile" uid="uid://ct5gu0i10fqbm" path="res://Assets/UI/Fonts/Nouveau_IBM.ttf" id="2_q60vr"]
+[ext_resource type="Texture2D" uid="uid://bp0xen08e3r6e" path="res://Assets/Textures/Entities/Player/Jump.png" id="3_uk0ug"]
+[ext_resource type="Texture2D" uid="uid://cmigqn5nyk00q" path="res://Assets/UI/KeysTextures/Arrow_Up_Key_Dark.png" id="4_tg3rf"]
+[ext_resource type="Script" path="res://Scripts/Game/ConsoleUI/ShowUp.gd" id="5_xxa63"]
+[ext_resource type="Texture2D" uid="uid://bx4p65i24727n" path="res://Assets/UI/KeysTextures/Arrow_Left_Key_Dark.png" id="6_latrq"]
+[ext_resource type="Script" path="res://Scripts/Game/ConsoleUI/ShowLeft.gd" id="7_7fol4"]
+[ext_resource type="Texture2D" uid="uid://nrrgy75mjd4p" path="res://Assets/UI/KeysTextures/Arrow_Right_Key_Dark.png" id="8_ox0hs"]
+[ext_resource type="Script" path="res://Scripts/Game/ConsoleUI/ShowRight.gd" id="9_2hfw1"]
+[ext_resource type="Texture2D" uid="uid://bojncv71twb2n" path="res://Assets/UI/KeysTextures/Shift_Key_Dark.png" id="10_weqbc"]
+[ext_resource type="Script" path="res://Scripts/Game/ConsoleUI/ShowDash.gd" id="11_k8xl7"]
+[ext_resource type="Texture2D" uid="uid://3jslrocuayt3" path="res://Assets/UI/KeysTextures/Space_Key_Dark.png" id="12_ahxvo"]
+[ext_resource type="Script" path="res://Scripts/Game/ConsoleUI/ShowJump.gd" id="13_fjfs4"]
+[ext_resource type="Texture2D" uid="uid://dufcga4bsra4" path="res://Assets/UI/CommonArtUI/PauseBtn.png" id="14_juvo5"]
+[ext_resource type="Texture2D" uid="uid://nlsfurqmhtbq" path="res://Assets/UI/TouchArtUI/TouchUI.atlas.png" id="15_58cje"]
+[ext_resource type="Texture2D" uid="uid://dsopcscnbi8c8" path="res://Assets/UI/TouchArtUI/TouchUI_Dark.atlas.png" id="16_7q028"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57cth"]
+atlas = ExtResource("15_58cje")
+region = Rect2(37, 19, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4lfd"]
+atlas = ExtResource("16_7q028")
+region = Rect2(37, 19, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfp72"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75kng"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 0.921569)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="DebugLayerUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h1uii")
+
+[node name="TouchScreenLayer" type="CanvasLayer" parent="."]
+
+[node name="ControlOptionsTouch" type="Control" parent="TouchScreenLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 150.0
+
+[node name="TouchConsole" type="TouchScreenButton" parent="TouchScreenLayer/ControlOptionsTouch"]
+modulate = Color(1, 1, 1, 0.941176)
+position = Vector2(24, 24)
+scale = Vector2(3.75, 3.75)
+texture_normal = SubResource("AtlasTexture_57cth")
+texture_pressed = SubResource("AtlasTexture_l4lfd")
+shape = SubResource("RectangleShape2D_pfp72")
+action = "game_console"
+visibility_mode = 1
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="InfoThing" type="Label" parent="DebugLayer"]
+offset_right = 120.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_q60vr")
+text = "Debug Console"
+
+[node name="DebugDisplay" type="Label" parent="DebugLayer"]
+offset_top = 24.0
+offset_right = 129.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("2_q60vr")
+text = "Player Info:
+ Not Present!"
+
+[node name="ConsoleOutlinePanel" type="PanelContainer" parent="DebugLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -344.0
+offset_top = 16.0
+offset_right = 344.0
+offset_bottom = 248.0
+grow_horizontal = 2
+tooltip_text = "Console Panel"
+theme_override_styles/panel = SubResource("StyleBoxFlat_75kng")
+
+[node name="ConsoleIOPanel" type="VBoxContainer" parent="DebugLayer/ConsoleOutlinePanel"]
+custom_minimum_size = Vector2(225, 175)
+layout_mode = 2
+alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DebugLayer/ConsoleOutlinePanel/ConsoleIOPanel"]
+custom_minimum_size = Vector2(100, 175)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="ConsoleOut" type="Label" parent="DebugLayer/ConsoleOutlinePanel/ConsoleIOPanel/ScrollContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q60vr")
+max_lines_visible = 100
+
+[node name="ConsoleIn" type="LineEdit" parent="DebugLayer/ConsoleOutlinePanel/ConsoleIOPanel"]
+layout_mode = 2
+tooltip_text = "Console Input"
+theme_override_colors/font_color = Color(0.203922, 0.552941, 0.25098, 1)
+theme_override_fonts/font = ExtResource("2_q60vr")
+placeholder_text = "Console Input"
+clear_button_enabled = true
+right_icon = ExtResource("3_uk0ug")
+flat = true
+caret_blink = true
+caret_blink_interval = 0.4
+
+[node name="ShowJet" type="TextureRect" parent="DebugLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 8.0
+offset_right = -60.0
+offset_bottom = 108.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_tg3rf")
+script = ExtResource("5_xxa63")
+
+[node name="ShowLeft" type="TextureRect" parent="DebugLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_top = 64.0
+offset_right = -116.0
+offset_bottom = 164.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_latrq")
+script = ExtResource("7_7fol4")
+
+[node name="ShowRight" type="TextureRect" parent="DebugLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_top = 64.0
+offset_right = -3.99976
+offset_bottom = 164.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_ox0hs")
+script = ExtResource("9_2hfw1")
+
+[node name="ShowDash" type="TextureRect" parent="DebugLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 120.0
+offset_right = -108.0
+offset_bottom = 220.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("10_weqbc")
+script = ExtResource("11_k8xl7")
+
+[node name="ShowJump" type="TextureRect" parent="DebugLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_top = 120.0
+offset_right = -11.9998
+offset_bottom = 220.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_ahxvo")
+script = ExtResource("13_fjfs4")
+
+[node name="PauseButton" type="Button" parent="DebugLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 351.0
+offset_top = 206.0
+offset_right = 397.0
+offset_bottom = 253.0
+grow_horizontal = 2
+tooltip_text = "Freeze"
+focus_mode = 0
+toggle_mode = true
+icon = ExtResource("14_juvo5")
+icon_alignment = 1
+
+[connection signal="text_submitted" from="DebugLayer/ConsoleOutlinePanel/ConsoleIOPanel/ConsoleIn" to="." method="_on_console_in_text_submitted"]
