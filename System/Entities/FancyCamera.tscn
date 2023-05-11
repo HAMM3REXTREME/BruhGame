@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://desrrxnj5py3"]
+
+[ext_resource type="Script" path="res://System/Entities/FancyCamera.gd" id="1_sy8h8"]
+
+[node name="Camera" type="Camera2D"]
+zoom = Vector2(3, 3)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("1_sy8h8")

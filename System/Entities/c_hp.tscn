@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0lbndyk5245i"]
+
+[ext_resource type="Script" path="res://System/Entities/C_HP.gd" id="1_b54x0"]
+
+[node name="C_HP" type="Node"]
+script = ExtResource("1_b54x0")
+hp_spawn = 100
+hp_max = 200
